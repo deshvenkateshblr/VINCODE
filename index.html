@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VINCODE - Indian Geographic Location Code Engine</title>
+        <link rel="stylesheet" href="style.css">
+
+          <!-- Leaflet CSS for Map -->
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        </head>
+  <body>
+
+    <header class="app-header">
+      <div class="header-left">
+        <h1>📍 VINCODE Geocoding Engine</h1>
+        <p class="subtitle">Mnemonic & Phonetic Coordinate Address System for India</p>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <!-- Left Column: Controls & Results -->
+      <section class="panel panel-controls">
+        <h2>Coordinate Encoder</h2>
+        <p class="instruction">Enter latitude and longitude, click anywhere on the map, or use your GPS.</p>
+
+        <div class="input-row">
+          <div class="form-group">
+            <label for="inputLat">Latitude (°N)</label>
+            <input type="number" id="inputLat" step="0.000001" placeholder="e.g. 12.9375" value="12.9375">
+        </div>
+          <div class="form-group">
+            <label for="inputLng">Longitude (°E)</label>
+            <input type="number" id="inputLng" step="0.000001" placeholder="e.g. 77.6250" value="77.6250">
+        </div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btnEncode" class="btn btn-primary">🔄 Convert to VINCODE</button>
+          <button id="btnGps" class="btn btn-outline">📡 My GPS Location</button>
+          <button id="btnRandom" class="btn btn-outline">🎲 Random Indian Coordinate</button>
+        </div>
+
+        <!-- Output Card -->
+        <div class="result-card">
+          <h3>Encoded Results</h3>
+
+          <div class="result-group">
+            <span class="badge">Short Code Mnemonic (P1 - P6)</span>
+            <div class="code-display" id="outShortCode">JANA KAVYA JAYA KAVERI BEEDU MANGALA MADHAVA NAGARA</div>
+            <button class="btn-copy" onclick="copyText('outShortCode')">Copy</button>
+          </div>
+
+          <div class="result-breakdown" id="breakdownContainer">
+            <div class="chip">
+              <strong>Macro (P1-P2):</strong>
+              <span id="chipP1P2">JANA KAVYA</span>
+            </div>
+            <div class="chip">
+              <strong>Lat Sub-grid (P3-1 P3-2 P4):</strong>
+              <span id="chipLatGrid">JAYA KAVERI BEEDU</span>
+            </div>
+            <div class="chip">
+              <strong>Lon Sub-grid (P5-1 P5-2 P6):</strong>
+              <span id="chipLonGrid">MANGALA MADHAVA NAGARA</span>
+            </div>
+          </div>
+
+          <div class="result-group" style="margin-top: 15px;">
+            <span class="badge badge-accent">Phonetic Name String</span>
+            <div class="code-display" id="outPhoneticName">VenKaTaRaMaNa</div>
+            <button class="btn-copy" onclick="copyText('outPhoneticName')">Copy</button>
+          </div>
+        </div>
+
+        <!-- Test Batch Section -->
+        <div class="samples-section">
+          <div class="samples-header">
+            <h3>Sample Test Batch</h3>
+            <button id="btnGenerate10" class="btn btn-sm">Generate 10 Samples</button>
+          </div>
+          <div class="table-wrapper">
+            <table id="testTable">
+              <thead>
+                <tr>
+                  <th>Lat, Lng</th>
+                  <th>Short Code Name</th>
+                </tr>
+              </thead>
+              <tbody id="testTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Interactive Map -->
+      <section class="panel panel-map">
+        <div id="map"></div>
+      </section>
+    </main>
+
+    <!-- External Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Data Tables (JSON encapsulated) -->
+    <script src="vincode_tables.js"></script>
+    <!-- Core App Logic -->
+    <script src="app.js"></script>
+  </body>
+</html>

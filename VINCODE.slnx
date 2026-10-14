@@ -1,1 +1,9 @@
-<Solution />
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="app.js" />
+    <File Path="index.html" />
+    <File Path="readme.md" />
+    <File Path="style.css" />
+    <File Path="vincode_tables.js" />
+  </Folder>
+</Solution>
